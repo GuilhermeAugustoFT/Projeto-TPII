@@ -2,7 +2,7 @@ package OrganizadorDeSistemas;
 
 import java.util.*;
 
-public class OrganizadorDeSistemas
+public class OrganizadorDeSistemas implements Cloneable
 {
     protected double[][] matrizEquacoes;
     protected String[] vetorEquacoes;
