@@ -1,5 +1,6 @@
 import LeitorArquivoSistemaEquacao.LeitorArquivoSistemaEquacao;
 import OrganizadorDeSistemas.OrganizadorDeSistemas;
+import VerificadorDeSistemas.VerificadorDeSistemas;
 
 public class ProgramaTeste
 {
@@ -10,7 +11,7 @@ public class ProgramaTeste
             //Teste de LeitorArquivoSistemaEquacao:
                 LeitorArquivoSistemaEquacao leitor = new LeitorArquivoSistemaEquacao();
 
-                leitor.ler("F:\\COTUCA\\Curso Técnico de Informática\\I Ano\\2 Sem\\Técnicas de Programação II\\2Java\\1Projetos\\Projeto1\\Programa\\src\\gauss.txt");
+                leitor.ler("C:\\Users\\nicol\\OneDrive\\Documentos\\GitHub\\Projeto-TPII\\Projeto-TPII-master\\Programa\\src\\gauss.txt");
                 System.out.println(leitor);
 
                 LeitorArquivoSistemaEquacao leitor2 = new LeitorArquivoSistemaEquacao(leitor);
@@ -37,7 +38,7 @@ public class ProgramaTeste
                 org.montarMatriz();
                 for(int i = 0; i < org.getQtdEquacoes(); i++)
                 {
-                    for(int j = 0; j < org.getQtdColunas(); j++)
+                    for(int j = 0; j < org.getQtdEquacoes() + 1; j++)
                     {
                         System.out.println(org.getMatriz()[i][j]);
                     }
@@ -48,11 +49,16 @@ public class ProgramaTeste
                 org.tirarZerosDaDiagonalPrincipal();
                 for(int i = 0; i < org.getQtdEquacoes(); i++)
                 {
-                    for(int j = 0; j < org.getQtdColunas(); j++)
+                    for(int j = 0; j < org.getQtdEquacoes() + 1; j++)
                     {
                         System.out.println(org.getMatriz()[i][j]);
                     }
                 }
+
+
+            //Teste de VerificadorDeSistemas:
+                VerificadorDeSistemas ver = new VerificadorDeSistemas(org.getMatriz(), org.getQtdEquacoes());
+                ver.verificarPossibilidadeDeResolucao();
         }
         catch(Exception ex)
         {

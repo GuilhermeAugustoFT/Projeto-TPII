@@ -25,30 +25,15 @@ public class OrganizadorDeSistemas implements Cloneable
             throw new Exception("O modelo era null");
 
         this.qtdEquacoes = modelo.qtdEquacoes;
-
-        String[] vetorEqNovo = new String[this.qtdEquacoes];
-        for(int i = 0; i < this.qtdEquacoes; i++)
-        {
-            vetorEqNovo[i] = new String(modelo.vetorEquacoes[i]);
-        }
-        this.vetorEquacoes = vetorEqNovo;
-
-        double[][] matrizEqNova = new double[this.qtdEquacoes + 1][this.qtdEquacoes];
-        for(int i = 0; i < this.qtdEquacoes + 1; i++)
-        {
-            for(int j = 0; j < this.qtdEquacoes; j++)
-            {
-                matrizEqNova[i][j] = modelo.matrizEquacoes[i][j];
-            }
-        }
-        this.matrizEquacoes = matrizEqNova;
+        this.vetorEquacoes = modelo.vetorEquacoes.clone();
+        this.matrizEquacoes = modelo.matrizEquacoes.clone();
     }
 
     public void montarMatriz() throws Exception
     {
         try
         {
-            this.matrizEquacoes = new double[this.qtdEquacoes][this.qtdEquacoes + 1];
+            this.matrizEquacoes = new double[this.qtdEquacoes][this.getQtdColunas()];
 
             for (int i=0; i < this.qtdEquacoes; i++)
             {
@@ -70,10 +55,10 @@ public class OrganizadorDeSistemas implements Cloneable
 
     public void tirarZerosDaDiagonalPrincipal() throws Exception
     {
-        double[] auxPrim = new double[this.qtdEquacoes + 1];
-        double[] auxSeg = new double[this.qtdEquacoes + 1];
+        double[] auxPrim = new double[this.getQtdColunas()];
+        double[] auxSeg = new double[this.getQtdColunas()];
         boolean ok = true;
-        for(int j = 0; j < this.qtdEquacoes + 1; j++)
+        for(int j = 0; j < this.getQtdColunas(); j++)
         {
             if (j < this.qtdEquacoes)
             {
@@ -94,7 +79,7 @@ public class OrganizadorDeSistemas implements Cloneable
 
             for (int i = 0; i < this.qtdEquacoes; i++)
             {
-                for (int j = 0; j < this.qtdEquacoes + 1; j++)
+                for (int j = 0; j < this.getQtdColunas(); j++)
                 {
                     if (i != this.qtdEquacoes - 1)
                         this.matrizEquacoes[i + 1][j] = auxPrim[j];
@@ -102,7 +87,7 @@ public class OrganizadorDeSistemas implements Cloneable
                         this.matrizEquacoes[0][j] = auxPrim[j];
                 }
 
-                for (int j = 0; j < this.qtdEquacoes + 1; j++)
+                for (int j = 0; j < this.getQtdColunas(); j++)
                 {
                     auxPrim[j] = auxSeg[j];
 
@@ -135,16 +120,7 @@ public class OrganizadorDeSistemas implements Cloneable
         if(qtdEquacoes < 2)
             throw new Exception("Quantidade de equações inválida");
 
-        double[][] novaMatriz = new double[qtdEquacoes][qtdEquacoes + 1];
-        for(int i = 0; i < qtdEquacoes; i++)
-        {
-            for(int j = 0; j < qtdEquacoes + 1; j++)
-            {
-                novaMatriz[i][j] = matriz[i][j];
-            }
-        }
-
-        this.matrizEquacoes = novaMatriz;
+        this.matrizEquacoes = matriz.clone();
         this.qtdEquacoes = qtdEquacoes;
     }
 
@@ -153,7 +129,7 @@ public class OrganizadorDeSistemas implements Cloneable
         return this.matrizEquacoes;
     }
 
-    public int getQtdColunas()
+    protected int getQtdColunas()
     {
         return this.qtdEquacoes + 1;
     }
@@ -167,16 +143,17 @@ public class OrganizadorDeSistemas implements Cloneable
     {
         int ret = 2;
 
-        ret += ret * 13 + new Integer(this.qtdEquacoes).hashCode();
+        ret = ret * 13 + new Integer(this.qtdEquacoes).hashCode();
 
         for(int i = 0; i < qtdEquacoes; i++)
-            for(int j = 0; j < qtdEquacoes + 1; j++)
+        {
+            for (int j = 0; j < this.getQtdColunas(); j++)
             {
-                ret += ret * 13 + new Double(this.matrizEquacoes[i][j]).hashCode();
+                ret = ret * 13 + new Double(this.matrizEquacoes[i][j]).hashCode();
             }
-
+        }
         for(int i = 0; i < vetorEquacoes.length; i++)
-            ret += ret * 13 + new String(this.vetorEquacoes[i]).hashCode();
+            ret = ret * 13 + new String(this.vetorEquacoes[i]).hashCode();
 
         return ret;
     }
@@ -192,20 +169,20 @@ public class OrganizadorDeSistemas implements Cloneable
 
         OrganizadorDeSistemas outro = (OrganizadorDeSistemas) obj;
 
-        if(outro.qtdEquacoes + 1 != this.qtdEquacoes + 1 || outro.qtdEquacoes != this.qtdEquacoes ||
-           this.vetorEquacoes.length != outro.vetorEquacoes.length)
+        if(outro.qtdEquacoes != this.qtdEquacoes)
             return false;
 
-
         for(int i = 0; i < qtdEquacoes; i++)
+        {
             for(int j = 0; j < qtdEquacoes + 1; j++)
             {
-               if(this.matrizEquacoes[i][j] != outro.matrizEquacoes[i][j]);
-                return false;
+                if(this.matrizEquacoes[i][j] != outro.matrizEquacoes[i][j])
+                    return false;
             }
+        }
 
         for(int i = 0; i < this.vetorEquacoes.length; i++)
-            if(this.vetorEquacoes[i] != outro.vetorEquacoes[i])
+            if(!this.vetorEquacoes[i].equals(outro.vetorEquacoes[i]))
                 return false;
 
         return true;
@@ -217,10 +194,12 @@ public class OrganizadorDeSistemas implements Cloneable
 
         for(int i = 0; i < this.qtdEquacoes; i++)
         {
-            ret += "| ";
-            for (int j = 0; j < this.qtdEquacoes + 1; j++)
-                ret += this.matrizEquacoes[i][j] + " ";
-            ret+= "|\n";
+            ret = ret + "| ";
+
+            for (int j = 0; j < this.getQtdColunas(); j++)
+                ret = ret + this.matrizEquacoes[i][j] + " ";
+
+            ret+= "|";
         }
 
 		return ret;

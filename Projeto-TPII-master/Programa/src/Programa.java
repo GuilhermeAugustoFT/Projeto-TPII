@@ -25,7 +25,7 @@ public class Programa
             org.montarMatriz();
 
             ver = new VerificadorDeSistemas(org.getMatriz(), org.getQtdEquacoes());
-            ver.verificarPossibilidadeDeResolucao;
+            ver.verificarPossibilidadeDeResolucao();
 
             org.setMatriz(ver.getMatriz(), ver.getQtdEquacoes());
             org.tirarZerosDaDiagonalPrincipal();
