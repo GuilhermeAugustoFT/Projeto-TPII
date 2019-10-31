@@ -162,4 +162,68 @@ public class OrganizadorDeSistemas
     {
         return this.qtdEquacoes;
     }
+
+    public int hashCode()
+    {
+        int ret = 2;
+
+        ret += ret * 13 + new Integer(this.qtdEquacoes).hashCode();
+
+        for(int i = 0; i < qtdEquacoes; i++)
+            for(int j = 0; j < qtdEquacoes + 1; j++)
+            {
+                ret += ret * 13 + new Double(this.matrizEquacoes[i][j]).hashCode();
+            }
+
+        for(int i = 0; i < vetorEquacoes.length; i++)
+            ret += ret * 13 + new String(this.vetorEquacoes[i]).hashCode();
+
+        return ret;
+    }
+
+    public boolean equals(Object obj)
+    {
+        if(this == obj)
+            return true;
+        if(obj == null)
+            return false;
+        if(this.getClass() != obj.getClass())
+            return false;
+
+        OrganizadorDeSistemas outro = (OrganizadorDeSistemas) obj;
+
+        if(outro.qtdEquacoes + 1 != this.qtdEquacoes + 1 || outro.qtdEquacoes != this.qtdEquacoes ||
+           this.vetorEquacoes.length != outro.vetorEquacoes.length)
+            return false;
+
+
+        for(int i = 0; i < qtdEquacoes; i++)
+            for(int j = 0; j < qtdEquacoes + 1; j++)
+            {
+               if(this.matrizEquacoes[i][j] != outro.matrizEquacoes[i][j]);
+                return false;
+            }
+
+        for(int i = 0; i < this.vetorEquacoes.length; i++)
+            if(this.vetorEquacoes[i] != outro.vetorEquacoes[i])
+                return false;
+
+        return true;
+    }
+
+    public String toString ()
+    {
+        String ret = "";
+
+        for(int i = 0; i < this.qtdEquacoes; i++)
+        {
+            ret += "| ";
+            for (int j = 0; j < this.qtdEquacoes + 1; j++)
+                ret += this.matrizEquacoes[i][j] + " ";
+            ret+= "|\n";
+        }
+
+		return ret;
+
+    }
 }

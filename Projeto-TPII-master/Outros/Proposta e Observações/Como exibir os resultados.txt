@@ -1,1 +1,0 @@
-"Os resultados valem, respectivamente, 12, 123, 435, 1234 etc"
