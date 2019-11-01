@@ -57,13 +57,13 @@ public class VerificadorDeSistemas
         {
             for(int j = 0; j < this.qtdEquacoes; j++)
             {
-                if(matrizResultados[i][j] == matrizResultados[i + 1][j])
+                if(matrizResultados[i][j] != matrizResultados[i + 1][j])
                 {
-                    ok = false;
+                    ok = true;
                     break;
                 }
                 else
-                    ok = true;
+                    ok = false;
             }
         }
         if(!ok)

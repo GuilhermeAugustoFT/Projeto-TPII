@@ -8,7 +8,7 @@ import java.io.FileReader;
  * como base um vetor que armazena as equações não formatadas e um inteiro que armazena a quantidade de equações no vetor.
  * Instâncias desta classe permitem a relização de leituras de arquivos texto de sistemas de equações.
  * Nela encontramos, por exemplo, um método para ler o arquivo, um construtor, equals etc.
- * @author Nícolas Maisonnette Duarte.
+ * @author Nícolas Maisonnette Duarte e Guilherme Augusto Felisberto Teixeira.
  * @since 2019.
  */
 public class LeitorArquivoSistemaEquacao implements Cloneable //Implementa o clone()

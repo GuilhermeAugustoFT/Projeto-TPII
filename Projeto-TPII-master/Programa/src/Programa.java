@@ -14,7 +14,6 @@ public class Programa
             OrganizadorDeSistemas org;
             VerificadorDeSistemas ver;
             DivisorDeLinhas div;
-            PrintadorDeResultado printResult;
 
             String localDoArquivo = "F:\\COTUCA\\Curso Técnico de Informática\\I Ano\\2 Sem\\Técnicas de Programação II\\2Java\\1Projetos\\Projeto1\\Programa\\src\\gauss.txt";
 
@@ -31,11 +30,9 @@ public class Programa
             org.tirarZerosDaDiagonalPrincipal();
 
             div = new DivisorDeLinhas(org.getMatriz(), org.getQtdEquacoes());
-            div.tornarDiagonalPrincipalUm();
-            div.tornarDemaisElementosZero();
+            div.resolverSistema();
 
-            printResult = new PrintadorDeResultado(div.getMatriz(), div.getQtdEquacoes());
-            printResult.printar();
+            PrintadorDeResultadoSistema.printar(div.getMatriz(), div.getQtdEquacoes());
         }
         catch(Exception ex) //TRATAR MELHOR A EXCEÇÃO, com System.err.println() etc. Sem lançar a exceção.
         {
