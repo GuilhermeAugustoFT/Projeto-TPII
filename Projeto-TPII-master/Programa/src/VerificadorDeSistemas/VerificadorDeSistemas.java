@@ -1,6 +1,6 @@
 package VerificadorDeSistemas;
 
-public class VerificadorDeSistemas
+public class VerificadorDeSistemas implements Cloneable
 {
     protected double[][] matrizEquacoes;
     protected int qtdEquacoes;

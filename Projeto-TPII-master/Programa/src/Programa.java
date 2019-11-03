@@ -1,11 +1,14 @@
 import LeitorArquivoSistemaEquacao.LeitorArquivoSistemaEquacao;
 import OrganizadorDeSistemas.OrganizadorDeSistemas;
+import ResolvedorDeSistemas.ResolvedorDeSistemas;
+import VerificadorDeSistemas.VerificadorDeSistemas;
+import PrintadorDeResultadoSistema.PrintadorDeResultadoSistema;
 
 public class Programa
 {
     public static void main(String[] args)
     {
-        /*try
+        try
         {
             //FAZER COMENTÁRIOS, JAVADOCS ETC.
             //PEDIR PARA O USUÁRIO DIGITAR A FONTE DO ARQUIVO!!!
@@ -13,9 +16,9 @@ public class Programa
             LeitorArquivoSistemaEquacao leitor;
             OrganizadorDeSistemas org;
             VerificadorDeSistemas ver;
-            DivisorDeLinhas div;
+            ResolvedorDeSistemas res;
 
-            String localDoArquivo = "F:\\COTUCA\\Curso Técnico de Informática\\I Ano\\2 Sem\\Técnicas de Programação II\\2Java\\1Projetos\\Projeto1\\Programa\\src\\gauss.txt";
+            String localDoArquivo = "C:\\Users\\nicol\\OneDrive\\Documentos\\GitHub\\Projeto-TPII\\Projeto-TPII-master\\Programa\\src\\gauss3.txt";
 
             leitor = new LeitorArquivoSistemaEquacao();
             leitor.ler(localDoArquivo);
@@ -29,14 +32,14 @@ public class Programa
             org.setMatriz(ver.getMatriz(), ver.getQtdEquacoes());
             org.tirarZerosDaDiagonalPrincipal();
 
-            div = new DivisorDeLinhas(org.getMatriz(), org.getQtdEquacoes());
-            div.resolverSistema();
+            res = new ResolvedorDeSistemas(org.getMatriz(), org.getQtdEquacoes());
+            res.resolverSistema();
 
-            PrintadorDeResultadoSistema.printar(div.getMatriz(), div.getQtdEquacoes());
+            PrintadorDeResultadoSistema.printar(res.getMatriz(), res.getQtdEquacoes());
         }
         catch(Exception ex) //TRATAR MELHOR A EXCEÇÃO, com System.err.println() etc. Sem lançar a exceção.
         {
             System.err.println(ex.getMessage());
-        }*/
+        }
     }
 }

@@ -1,4 +1,4 @@
-import DivisorDeLinhas.DivisorDeLinhas;
+import ResolvedorDeSistemas.ResolvedorDeSistemas;
 import LeitorArquivoSistemaEquacao.LeitorArquivoSistemaEquacao;
 import OrganizadorDeSistemas.OrganizadorDeSistemas;
 import VerificadorDeSistemas.VerificadorDeSistemas;
@@ -12,8 +12,8 @@ public class ProgramaTeste
             //Teste de LeitorArquivoSistemaEquacao:
                 LeitorArquivoSistemaEquacao leitor = new LeitorArquivoSistemaEquacao();
 
-                //leitor.ler("C:\\Users\\nicol\\OneDrive\\Documentos\\GitHub\\Projeto-TPII\\Projeto-TPII-master\\Programa\\src\\gauss.txt");
-                leitor.ler("C:\\Users\\u19192\\Documents\\GitHub\\Projeto-TPII\\Projeto-TPII-master\\Programa\\src\\gauss.txt");
+                leitor.ler("C:\\Users\\nicol\\OneDrive\\Documentos\\GitHub\\Projeto-TPII\\Projeto-TPII-master\\Programa\\src\\gauss.txt");
+                //leitor.ler("C:\\Users\\u19192\\Documents\\GitHub\\Projeto-TPII\\Projeto-TPII-master\\Programa\\src\\gauss.txt");
                 System.out.println(leitor);
 
                 LeitorArquivoSistemaEquacao leitor2 = new LeitorArquivoSistemaEquacao(leitor);
@@ -63,17 +63,18 @@ public class ProgramaTeste
                 ver.verificarPossibilidadeDeResolucao();
 
             //Teste de VerificadorDeSistemas:
-                DivisorDeLinhas div = new DivisorDeLinhas(org.getMatriz(), org.getQtdEquacoes());
+                ResolvedorDeSistemas div = new ResolvedorDeSistemas(org.getMatriz(), org.getQtdEquacoes());
                 div.resolverSistema();
 
-                System.out.println("\n\n");
+                System.out.println("\n\n\n\n");
 
                 for(int i = 0; i < div.getQtdEquacoes(); i++)
                 {
                     for(int j = 0; j < div.getQtdEquacoes() + 1; j++)
                     {
-                        System.out.println(div.getMatriz()[i][j]);
+                        System.out.print(div.getMatriz()[i][j] + "  ");
                     }
+                    System.out.println("\n");
                 }
         }
         catch(Exception ex)

@@ -1,11 +1,11 @@
-package DivisorDeLinhas;
+package ResolvedorDeSistemas;
 
-public class DivisorDeLinhas
+public class ResolvedorDeSistemas implements Cloneable
 {
     protected double[][] matrizEquacoes;
     protected int qtdEquacoes;
 
-    public DivisorDeLinhas(double[][] matrizEquacoes, int qtdEquacoes) throws Exception
+    public ResolvedorDeSistemas(double[][] matrizEquacoes, int qtdEquacoes) throws Exception
     {
         if(matrizEquacoes == null)
             throw new Exception("A matriz era null");
@@ -16,7 +16,7 @@ public class DivisorDeLinhas
         this.qtdEquacoes = qtdEquacoes;
     }
 
-    public DivisorDeLinhas(DivisorDeLinhas modelo) throws Exception
+    public ResolvedorDeSistemas(ResolvedorDeSistemas modelo) throws Exception
     {
         if(modelo == null)
             throw new Exception("O modelo era null");
@@ -73,11 +73,11 @@ public class DivisorDeLinhas
                 numeroTrocado = -this.matrizEquacoes[i][coluna];
                 if(numeroTrocado != 0)
                 {
-                    for(int j = 0; j < this.getQtdColunas(); j++)
+                    for (int j = 0; j < this.getQtdColunas(); j++)
                     {
-                        aSerSomado[j] = this.matrizEquacoes[i][j] * numeroTrocado;
+                        aSerSomado[j] = this.matrizEquacoes[coluna][j] * numeroTrocado;
 
-                        this.matrizEquacoes[coluna][j] = aSerSomado[j];
+                        this.matrizEquacoes[i][j] = this.matrizEquacoes[i][j] + aSerSomado[j];
                     }
                 }
             }
