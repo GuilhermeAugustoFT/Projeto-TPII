@@ -88,7 +88,7 @@ public class LeitorArquivoSistemaEquacao implements Cloneable //Implementa o clo
     }
 
     /**
-     * Coleta a quantidade equações.
+     * Coleta a quantidade de equações.
      * Retorna a quantidade de equações lidas do arquivo texto.
      * @return a quantidade de equações, que é um inteiro.
      */
@@ -122,11 +122,11 @@ public class LeitorArquivoSistemaEquacao implements Cloneable //Implementa o clo
      */
     public int hashCode()
     {
-        int ret = 17;
+        int ret = 13;
 
-        ret = ret * 17 + new Integer(this.qtdEquacoes).hashCode();
+        ret = ret * 13 + new Integer(this.qtdEquacoes).hashCode();
         for(int i = 0; i < this.qtdEquacoes; i++) //Percorre o vetor, coletando o hashCode de cada posição
-            ret = ret * 17 + this.vetorEquacoes[i].hashCode();
+            ret = ret * 13 + this.vetorEquacoes[i].hashCode();
 
         if(ret < 0)
             ret = -ret;
@@ -136,7 +136,7 @@ public class LeitorArquivoSistemaEquacao implements Cloneable //Implementa o clo
 
     /**
      * Constroi uma cópia deste LeitorArquivoSistemaEquacao.
-     * Utiliza o construtor de cópia para gerar uma de this e a retorna.
+     * Utiliza o construtor de cópia para gerar uma cópia de this e a retorna.
      * @return a cópia deste LeitorArquivoSistemaEquacao como Object.
      */
     public Object clone()
