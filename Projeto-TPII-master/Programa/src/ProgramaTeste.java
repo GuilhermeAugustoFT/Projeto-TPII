@@ -12,7 +12,7 @@ public class ProgramaTeste
             //Teste de LeitorArquivoSistemaEquacao:
                 LeitorArquivoSistemaEquacao leitor = new LeitorArquivoSistemaEquacao();
 
-                leitor.ler("C:\\Users\\nicol\\OneDrive\\Documentos\\GitHub\\Projeto-TPII\\Projeto-TPII-master\\Programa\\src\\gauss.txt");
+                leitor.ler("C:\\Users\\nicol\\OneDrive\\Documentos\\GitHub\\Projeto-TPII\\Projeto-TPII-master\\Programa\\src\\gauss4.txt");
                 //leitor.ler("C:\\Users\\u19192\\Documents\\GitHub\\Projeto-TPII\\Projeto-TPII-master\\Programa\\src\\gauss.txt");
                 System.out.println(leitor);
 

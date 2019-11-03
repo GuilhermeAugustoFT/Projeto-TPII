@@ -1,8 +1,8 @@
-package PrintadorDeResultadoSistema;
+package Printador;
 
-public class PrintadorDeResultadoSistema
+public class Printador //Classe singleton
 {
-    public static void printar(double[][] matriz, int qtdEquacoes)
+    public static void printarResultado(double[][] matriz, int qtdEquacoes)
     {
         System.out.println("Os resultados valem, respectivamente:");
 
@@ -25,5 +25,10 @@ public class PrintadorDeResultadoSistema
             else
                 System.out.printf("%.2f" + ")", resultados[qtdEquacoes - 1]);
         }
+    }
+
+    public static void printarPerguntarLocalDoArquivo()
+    {
+        System.out.println("Digite o local do arquivo do sistema para resolvê-lo ou digite SAIR para finalizar o programa: ");
     }
 }
