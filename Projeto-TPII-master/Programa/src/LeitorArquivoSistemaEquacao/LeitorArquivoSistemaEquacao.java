@@ -1,4 +1,4 @@
-package LeitorArquivoSistemaEquacao;
+package leitorArquivoSistemaEquacao;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -122,7 +122,7 @@ public class LeitorArquivoSistemaEquacao implements Cloneable //Implementa o clo
      */
     public int hashCode()
     {
-        int ret = 13;
+        int ret = 2;
 
         ret = ret * 13 + new Integer(this.qtdEquacoes).hashCode();
         for(int i = 0; i < this.qtdEquacoes; i++) //Percorre o vetor, coletando o hashCode de cada posição

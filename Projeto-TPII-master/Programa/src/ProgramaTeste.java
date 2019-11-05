@@ -1,7 +1,7 @@
-import ResolvedorDeSistemas.ResolvedorDeSistemas;
-import LeitorArquivoSistemaEquacao.LeitorArquivoSistemaEquacao;
-import OrganizadorDeSistemas.OrganizadorDeSistemas;
-import VerificadorDeSistemas.VerificadorDeSistemas;
+import resolvedorDeSistemas.ResolvedorDeSistemas;
+import leitorArquivoSistemaEquacao.LeitorArquivoSistemaEquacao;
+import organizadorDeSistemas.OrganizadorDeSistemas;
+import verificadorDeSistemas.VerificadorDeSistemas;
 
 public class ProgramaTeste
 {
@@ -35,47 +35,7 @@ public class ProgramaTeste
                 System.out.println(leitor.equals(new LeitorArquivoSistemaEquacao()));
 
             //Teste de OrganizadorDeSistemas:
-                OrganizadorDeSistemas org = new OrganizadorDeSistemas(leitor.getLinhas(), leitor.getQtdEquacoes());
 
-                org.montarMatriz();
-                for(int i = 0; i < org.getQtdEquacoes(); i++)
-                {
-                    for(int j = 0; j < org.getQtdEquacoes() + 1; j++)
-                    {
-                        System.out.println(org.getMatriz()[i][j]);
-                    }
-                }
-
-                System.out.println("\n\n");
-
-                org.tirarZerosDaDiagonalPrincipal();
-                for(int i = 0; i < org.getQtdEquacoes(); i++)
-                {
-                    for(int j = 0; j < org.getQtdEquacoes() + 1; j++)
-                    {
-                        System.out.println(org.getMatriz()[i][j]);
-                    }
-                }
-
-
-            //Teste de VerificadorDeSistemas:
-                VerificadorDeSistemas ver = new VerificadorDeSistemas(org.getMatriz(), org.getQtdEquacoes());
-                ver.verificarPossibilidadeDeResolucao();
-
-            //Teste de VerificadorDeSistemas:
-                ResolvedorDeSistemas div = new ResolvedorDeSistemas(org.getMatriz(), org.getQtdEquacoes());
-                div.resolverSistema();
-
-                System.out.println("\n\n\n\n");
-
-                for(int i = 0; i < div.getQtdEquacoes(); i++)
-                {
-                    for(int j = 0; j < div.getQtdEquacoes() + 1; j++)
-                    {
-                        System.out.print(div.getMatriz()[i][j] + "  ");
-                    }
-                    System.out.println("\n");
-                }
         }
         catch(Exception ex)
         {

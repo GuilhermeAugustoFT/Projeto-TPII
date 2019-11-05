@@ -1,4 +1,4 @@
-package Printador;
+package printador;
 
 /**
  * A classe Printador representa uma classe singleton, que servirá apenas para interagir com o usuário,

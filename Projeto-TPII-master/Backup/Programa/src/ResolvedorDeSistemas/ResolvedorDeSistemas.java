@@ -1,17 +1,17 @@
-package ResolvedorDeSistemas;
+package resolvedorDeSistemas;
 
 /**
- * A classe ResolvedorDeSistemas representa é a classe que resolverá o sistema de equações, tendo
+ * A classe ResolvedorDeSistemas é a classe que resolverá o sistema de equações, tendo
  * como base uma matriz que armazena os coeficientes das equações anteriormente armazenados pela classe LeitorArquivoSistemaEquação,
- * e organizados pela classe OrganizadorDeSistemas.
- * Instâncias desta classe possuem a capacidade de resolver sistemas de equações que anteriormente organizados.
+ * e organizados pela classe OrganizadorDeSistemas, e tendo também uma variável inteira que armazena a quantidade de equações no sistema.
+ * Instâncias desta classe possuem a capacidade de resolver sistemas de equações anteriormente organizados.
  * Nela encontramos, por exemplo, um método para resolver o sistema, um construtor, equals etc.
  * @author Nícolas Maisonnette Duarte e Guilherme Augusto Felisberto Teixeira.
  * @since 2019.
  */
 public class ResolvedorDeSistemas implements Cloneable
 {
-    /** Matriz de Double onde os coeficientes das equações serão armazanados*/
+    /** Matriz de double onde os coeficientes das equações serão armazanados. */
     protected double[][] matrizEquacoes;
 
     /** Variável inteira representando a quantidade de equações do sistema lido. */
@@ -21,7 +21,7 @@ public class ResolvedorDeSistemas implements Cloneable
      * Constroi uma nova instância da classe ResolvedorDeSistemas.
      * @param matrizEquacoes matriz que possui os valores dos coeficientes do sistema.
      * @param qtdEquacoes inteiro cujo valor representa a quantidade de equações do sistema.
-     * @throws Exception se a matriz de equações for nulo, ou se a quantidade de equações for inválida
+     * @throws Exception se a matriz de equações for nulo, ou se a quantidade de equações for inválida.
      */
     public ResolvedorDeSistemas(double[][] matrizEquacoes, int qtdEquacoes) throws Exception
     {
@@ -50,45 +50,29 @@ public class ResolvedorDeSistemas implements Cloneable
         this.qtdEquacoes = modelo.qtdEquacoes;
     }
 
-    /**
-     * Coleta a quantidade de equações.
-     * Retorna a quantidade de equações presentes na matriz da classe.
-     * @return a quantidade de equações, que é um inteiro.
-     */
+
     public int getQtdEquacoes()
     {
         return qtdEquacoes;
     }
 
     /**
-     * Coleta a quantidade de colunas.
+     * Cria e retorna a quantidade de colunas.
      * Retorna a quantidade de colunas presentes na matriz da classe.
      * @return a quantidade de colunas, que é um inteiro.
      */
-    private int getQtdColunas()
+    protected int getQtdColunas()
     {
         return qtdEquacoes + 1;
     }
 
     /**
-     * Coleta a matriz.
-     * Retorna a matriz da classe.
-     * @return a matriz da classe, que é do tipo Double.
-     */
-    public double[][] getMatriz()
-    {
-        return this.matrizEquacoes;
-    }
-
-    /**
      * Resolve o sistema de equações.
-     *
-     *
-     *
-     *
-     *
+     * Primeiramente, a diagonal principal será tornada um, e depois todo o resto será tornado zero por meio do método protected tornarDemaisElementosZero.
+     * @throws Exception se algo for dividido por zero.
+     * @return a matriz resolvida, com o número 1 na diagonal principal e o resto 0.
      */
-    public void resolverSistema() throws Exception
+    public double[][] resolverSistema() throws Exception
     {
         double divisor;
         double resultado;
@@ -107,19 +91,15 @@ public class ResolvedorDeSistemas implements Cloneable
             }
             tornarDemaisElementosZero(i);
         }
+
+        return this.matrizEquacoes;
     }
 
     /**
-     * Torna os demais elemetos em Zero.
-     *
-     *
-     *
-     *
-     *
-     *
-     *
+     * Torna os demais elemetos zero.
+     * Soma a linha do elemento a ser tornado um multiplicada pelo oposto do elemento a ser tornado zero à linha do elemento a ser tornado zero.
      */
-    private void tornarDemaisElementosZero(int coluna)
+    protected void tornarDemaisElementosZero(int coluna)
     {
         double[] aSerSomado = new double[this.getQtdColunas()];
         double numeroTrocado;
@@ -155,11 +135,12 @@ public class ResolvedorDeSistemas implements Cloneable
         ret = ret * 13 + new Integer(this.qtdEquacoes).hashCode();
 
         for (int i = 0; i < this.qtdEquacoes; i++)
-            for (int j = 0; j < this.qtdEquacoes + 1; j++)
+            for (int j = 0; j < this.getQtdColunas(); j++)
                 ret = ret * 13 + new Double(this.matrizEquacoes[i][j]).hashCode();
 
         if(ret < 0)
             return -ret;
+
         return ret;
     }
 
@@ -189,7 +170,7 @@ public class ResolvedorDeSistemas implements Cloneable
             return false;
 
         for(int i = 0; i < this.qtdEquacoes; i++)
-            for(int j = 0; j < this.qtdEquacoes + 1; j++)
+            for(int j = 0; j < this.getQtdColunas(); j++)
                 if(this.matrizEquacoes[i][j] != outro.matrizEquacoes[i][j])
                     return false;
 
@@ -198,21 +179,23 @@ public class ResolvedorDeSistemas implements Cloneable
 
     /**
      * Gera uma representação textual de todo conteúdo do resolvedor de sistemas.
-     * Produz e resulta um String representando a matriz de equações do objeto chamante da classe.
-     * @return um String contendo representando a matriz de equações.
+     * Produz e resulta um String representando a matriz de equações do objeto chamante da classe e a quantidade de equações.
+     * @return um String contendo representando a matriz de equações e quantidade de equações.
      */
     public String toString()
     {
-        String ret = "";
+        String ret = "Quantidade de equações: " + this.qtdEquacoes + "\n" + "Matriz:" + "\n";
 
         for(int i = 0; i < this.qtdEquacoes; i++)
         {
-            ret = ret + "| ";
+            ret = ret + "{";
 
-            for (int j = 0; j < this.getQtdColunas(); j++)
-                ret = ret + this.matrizEquacoes[i][j] + " ";
+            for (int j = 0; j < this.qtdEquacoes; j++)
+                ret = ret + this.matrizEquacoes[i][j] + "; ";
 
-            ret+= "|";
+            ret = ret + this.matrizEquacoes[i][this.qtdEquacoes];
+
+            ret = ret + "}";
         }
 
         return ret;

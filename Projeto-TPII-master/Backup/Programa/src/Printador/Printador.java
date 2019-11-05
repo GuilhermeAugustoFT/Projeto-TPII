@@ -1,4 +1,4 @@
-package Printador;
+package printador;
 
 /**
  * A classe Printador representa uma classe singleton, que servirá apenas para interagir com o usuário,
@@ -12,7 +12,7 @@ public class Printador //Classe singleton
     /**
      * Escreve o resultado do sistema de equações.
      * Ao receber seus parâmetros, o método gera uma string que contém, de uma forma autoexplicativa para o usuário,
-     * os resultados do sistema de equações;
+     * os resultados do sistema de equações.
      * @param matriz matriz que o método printará na tela.
      * @param qtdEquacoes quantidade de equações presentes no sistema.
      */
@@ -43,7 +43,7 @@ public class Printador //Classe singleton
 
     /**
      * Pergunta para o usuário o diretório do arquivo.
-     * Pede para o usuário digitar o diretório do arquivo, que contém o sistema de equações que ele deseja resolver;
+     * Pede para o usuário digitar o diretório do arquivo, que contém o sistema de equações que ele deseja resolver.
      */
     public static void printarPerguntarLocalDoArquivo()
     {

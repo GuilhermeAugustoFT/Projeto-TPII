@@ -1,4 +1,4 @@
-package ResolvedorDeSistemas;
+package resolvedorDeSistemas;
 
 /**
  * A classe ResolvedorDeSistemas é a classe que resolverá o sistema de equações, tendo
@@ -50,11 +50,7 @@ public class ResolvedorDeSistemas implements Cloneable
         this.qtdEquacoes = modelo.qtdEquacoes;
     }
 
-    /**
-     * Coleta a quantidade de equações.
-     * Retorna a quantidade de equações presentes na matriz da classe.
-     * @return a quantidade de equações, que é um inteiro.
-     */
+
     public int getQtdEquacoes()
     {
         return qtdEquacoes;
@@ -65,27 +61,18 @@ public class ResolvedorDeSistemas implements Cloneable
      * Retorna a quantidade de colunas presentes na matriz da classe.
      * @return a quantidade de colunas, que é um inteiro.
      */
-    private int getQtdColunas()
+    protected int getQtdColunas()
     {
         return qtdEquacoes + 1;
-    }
-
-    /**
-     * Coleta a matriz.
-     * Retorna a matriz da classe.
-     * @return a matriz da classe, que é do tipo double.
-     */
-    public double[][] getMatriz()
-    {
-        return this.matrizEquacoes;
     }
 
     /**
      * Resolve o sistema de equações.
      * Primeiramente, a diagonal principal será tornada um, e depois todo o resto será tornado zero por meio do método protected tornarDemaisElementosZero.
      * @throws Exception se algo for dividido por zero.
+     * @return a matriz resolvida, com o número 1 na diagonal principal e o resto 0.
      */
-    public void resolverSistema() throws Exception
+    public double[][] resolverSistema() throws Exception
     {
         double divisor;
         double resultado;
@@ -104,6 +91,8 @@ public class ResolvedorDeSistemas implements Cloneable
             }
             tornarDemaisElementosZero(i);
         }
+
+        return this.matrizEquacoes;
     }
 
     /**

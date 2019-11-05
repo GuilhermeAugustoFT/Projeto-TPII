@@ -1,22 +1,22 @@
-package OrganizadorDeSistemas;
+package organizadorDeSistemas;
 
 import java.util.*;
 
 /**
- * A classe OrganizadorDeSistemas representa um organizador de equações lidas em um arquivo texto, tendo
- * como base uma matriz que armazena os coeficientes das equações anteriormente armazenados pela classe LeitorArquivoSistemaEquação.
+ * A classe OrganizadorDeSistemas representa um organizador de equações lidas de um arquivo texto, tendo
+ * como base uma matriz que armazena os coeficientes das equações anteriormente armazenados pela classe LeitorArquivoSistemaEquação no vetorEquacoes e um número inteiro de quantidade de equações presentes.
  * Instâncias desta classe permitem que valores lidos de um arquivo texto sejam armazenados e organizados em uma Matriz.
- * Nela encontramos, por exemplo, um método para Montar a Matriz, Tirar os zeros da diagonal principal, um construtor, equals etc.
+ * Nela encontramos, por exemplo, um método para montar a Matriz, tirar os zeros da diagonal principal, um construtor, equals etc.
  * @author Nícolas Maisonnette Duarte e Guilherme Augusto Felisberto Teixeira.
  * @since 2019.
  */
 
 public class OrganizadorDeSistemas implements Cloneable
 {
-    /** Matriz de Double onde os coeficientes das equações serão armazanados.*/
+    /** Matriz de double onde os coeficientes das equações serão armazanados.*/
     protected double[][] matrizEquacoes;
 
-    /** Vetor de String onde os coeficientes das equações são armazenados.*/
+    /** Vetor de String onde as equações não formatadas são armazenadas.*/
     protected String[] vetorEquacoes;
 
     /** Variável inteira representando a quantidade de equações do sistema lido. */
@@ -58,11 +58,12 @@ public class OrganizadorDeSistemas implements Cloneable
 
     /**
      * Monta a matriz com os coeficientes das equações.
-     * Faz a instância da matriz de equações e a cada linha dessa matriz, preenche suas colunas com os valores dos coeficientes.
-     * Utiliza a classe StringTokenizer para auxiliar "quebrando" a string em caracteres.
+     * Cria uma instância da matriz de equações e, a cada linha dessa matriz, preenche suas colunas com os valores dos coeficientes;
+     * utiliza a classe StringTokenizer para auxiliar "quebrando" a string em caracteres.
      * @throws Exception se ocorrer algum erro na montagem da matriz.
+     * @return a matriz montada.
      */
-    public void montarMatriz() throws Exception
+    public double[][] montarMatriz() throws Exception
     {
         try
         {
@@ -84,17 +85,20 @@ public class OrganizadorDeSistemas implements Cloneable
         {
             throw new Exception("Erro ao montar a matriz");
         }
+
+        return this.matrizEquacoes;
     }
 
     /**
      * Tira os zeros da diagonal principal da matriz.
-     * Faz a instância duas matrizes auxiliares e um boolean, que auxiliarão no decorrer da função.
-     * Primeiramente, o método verifica se a matriz já está sem zeros na diagonal principal.
-     * Se possui zeros na diagonal principal, o método desloca cada linha da matriz para a linha de baixo,
+     * Cria as instâncias de duas matrizes auxiliares e um boolean, que auxiliarão no decorrer da função;
+     * primeiramente, o método verifica se a matriz já está sem zeros na diagonal principal;
+     * se possui zeros na diagonal principal, o método desloca cada linha da matriz para a linha de baixo,
      * visando eliminar esses zeros da diagonal principal.
      * @throws Exception se o método não conseguir tirar os zeros da diagonal principal.
+     * @return a matriz sem os zeros na diagonal principal.
      */
-    public void tirarZerosDaDiagonalPrincipal() throws Exception
+    public double[][] tirarZerosDaDiagonalPrincipal() throws Exception
     {
         double[] auxPrim = new double[this.getQtdColunas()];
         double[] auxSeg = new double[this.getQtdColunas()];
@@ -152,38 +156,12 @@ public class OrganizadorDeSistemas implements Cloneable
             if (!ok)
                 throw new Exception("Sistema impossível de se resolver");
         }
-    }
 
-    /**
-     * Armazena valores na matriz.
-     * Armazena valores na matriz a partir de uma matriz já existente.
-     * @param matriz a matriz que passará oa valores para matriz de equações da classe.
-     * @param qtdEquacoes passa para a classe a quantidade de equações fornecidas pela matriz.
-     * @throws Exception se a matriz passada por parâmetro for nula ou se a quantidade de equações for inválida.
-     */
-    public void setMatriz(double[][] matriz, int qtdEquacoes) throws Exception
-    {
-        if(matriz == null)
-            throw new Exception("Matriz inválida");
-        if(qtdEquacoes < 2)
-            throw new Exception("Quantidade de equações inválida");
-
-        this.matrizEquacoes = matriz.clone();
-        this.qtdEquacoes = qtdEquacoes;
-    }
-
-    /**
-     * Coleta a matriz.
-     * Retorna a matriz da classe.
-     * @return a matriz da classe, que é do tipo Double.
-     */
-    public double[][] getMatriz()
-    {
         return this.matrizEquacoes;
     }
 
     /**
-     * Coleta a quantidade de colunas.
+     * Cria e retorna a quantidade de colunas.
      * Retorna a quantidade de colunas presentes na matriz da classe.
      * @return a quantidade de colunas, que é um inteiro.
      */
@@ -217,11 +195,13 @@ public class OrganizadorDeSistemas implements Cloneable
         for(int i = 0; i < qtdEquacoes; i++) // percorre a matriz, coletando o valor do hashcode de cada posição
             for (int j = 0; j < this.getQtdColunas(); j++)
                 ret = ret * 13 + new Double(this.matrizEquacoes[i][j]).hashCode();
+
         for(int i = 0; i < vetorEquacoes.length; i++) // percorre o vetor, coletado o valor do hashcode de cada posição
-            ret = ret * 13 + new String(this.vetorEquacoes[i]).hashCode();
+            ret = ret * 13 + this.vetorEquacoes[i].hashCode();
 
         if(ret < 0)
             return -ret;
+
         return ret;
     }
 
@@ -240,19 +220,20 @@ public class OrganizadorDeSistemas implements Cloneable
     {
         if(this == obj)
             return true;
+
         if(obj == null)
             return false;
+
         if(this.getClass() != obj.getClass())
             return false;
 
         OrganizadorDeSistemas outro = (OrganizadorDeSistemas) obj;
-
         if(outro.qtdEquacoes != this.qtdEquacoes)
             return false;
 
         for(int i = 0; i < qtdEquacoes; i++)//Verifica se todos os valores das matrizes são iguais
         {
-            for(int j = 0; j < qtdEquacoes + 1; j++)
+            for(int j = 0; j < this.getQtdColunas(); j++)
             {
                 if(this.matrizEquacoes[i][j] != outro.matrizEquacoes[i][j])
                     return false;
@@ -267,23 +248,33 @@ public class OrganizadorDeSistemas implements Cloneable
     }
 
     /**
-     * Gera uma representação textual de todo conteúdo do Organizador de sistemas.
-     * Produz e resulta um String representando a matriz de equações do objeto chamante da classe.
-     * @return um String contendo representando a matriz de equações.
+     * Gera uma representação textual de todo conteúdo do organizador de sistemas.
+     * Produz e resulta um String representando o objeto chamante da classe.
+     * @return um String contendo representando o objeto chamante da classe.
      */
     public String toString ()
     {
-        String ret = "";
+        String ret = "Quantidade de equações: " + this.qtdEquacoes + "\n" + "Matriz:" + "\n";
 
         for(int i = 0; i < this.qtdEquacoes; i++)
         {
-            ret = ret + "| ";
+            ret = ret + "{";
 
-            for (int j = 0; j < this.getQtdColunas(); j++)
-                ret = ret + this.matrizEquacoes[i][j] + " ";
+            for (int j = 0; j < this.qtdEquacoes; j++)
+                ret = ret + this.matrizEquacoes[i][j] + "; ";
 
-            ret+= "|";
+            ret = ret + this.matrizEquacoes[i][this.qtdEquacoes];
+
+            ret = ret + "}";
         }
+        ret = ret + "\n" + "Vetor de Equações:" + "\n";
+
+        for(int i = 0; i < this.qtdEquacoes - 1; i++) //Percorre o vetor, adicionando cada valor de dentro dele à String de retorno
+            ret = ret + this.vetorEquacoes[i] + "\n";
+
+        ret = ret + this.vetorEquacoes[this.qtdEquacoes - 1]; //Adiciona o último sem "\n"
+
+
 
 		return ret;
     }
@@ -293,7 +284,7 @@ public class OrganizadorDeSistemas implements Cloneable
      * Utiliza o construtor de cópia para gerar uma cópia de this e a retorna.
      * @return a cópia deste OrganizadorDeSistemas como Object.
      */
-    public Object clone ()
+    public Object clone()
     {
         OrganizadorDeSistemas ret = null;
         try

@@ -1,4 +1,4 @@
-package OrganizadorDeSistemas;
+package organizadorDeSistemas;
 
 import java.util.*;
 
@@ -61,8 +61,9 @@ public class OrganizadorDeSistemas implements Cloneable
      * Cria uma instância da matriz de equações e, a cada linha dessa matriz, preenche suas colunas com os valores dos coeficientes;
      * utiliza a classe StringTokenizer para auxiliar "quebrando" a string em caracteres.
      * @throws Exception se ocorrer algum erro na montagem da matriz.
+     * @return a matriz montada.
      */
-    public void montarMatriz() throws Exception
+    public double[][] montarMatriz() throws Exception
     {
         try
         {
@@ -84,6 +85,8 @@ public class OrganizadorDeSistemas implements Cloneable
         {
             throw new Exception("Erro ao montar a matriz");
         }
+
+        return this.matrizEquacoes;
     }
 
     /**
@@ -93,8 +96,9 @@ public class OrganizadorDeSistemas implements Cloneable
      * se possui zeros na diagonal principal, o método desloca cada linha da matriz para a linha de baixo,
      * visando eliminar esses zeros da diagonal principal.
      * @throws Exception se o método não conseguir tirar os zeros da diagonal principal.
+     * @return a matriz sem os zeros na diagonal principal.
      */
-    public void tirarZerosDaDiagonalPrincipal() throws Exception
+    public double[][] tirarZerosDaDiagonalPrincipal() throws Exception
     {
         double[] auxPrim = new double[this.getQtdColunas()];
         double[] auxSeg = new double[this.getQtdColunas()];
@@ -152,33 +156,7 @@ public class OrganizadorDeSistemas implements Cloneable
             if (!ok)
                 throw new Exception("Sistema impossível de se resolver");
         }
-    }
 
-    /**
-     * Armazena valores na matriz.
-     * Armazena valores na matriz a partir de uma matriz já existente.
-     * @param matriz a matriz que passará os valores para matriz de equações da classe.
-     * @param qtdEquacoes passa para a classe a quantidade de equações fornecidas.
-     * @throws Exception se a matriz passada por parâmetro for nula ou se a quantidade de equações for inválida.
-     */
-    public void setMatriz(double[][] matriz, int qtdEquacoes) throws Exception
-    {
-        if(matriz == null)
-            throw new Exception("Matriz inválida");
-        if(qtdEquacoes < 2)
-            throw new Exception("Quantidade de equações inválida");
-
-        this.matrizEquacoes = matriz.clone();
-        this.qtdEquacoes = qtdEquacoes;
-    }
-
-    /**
-     * Coleta a matriz.
-     * Retorna a matriz da classe.
-     * @return a matriz da classe, que é do tipo double.
-     */
-    public double[][] getMatriz()
-    {
         return this.matrizEquacoes;
     }
 

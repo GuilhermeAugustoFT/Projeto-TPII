@@ -1,10 +1,10 @@
 //Importa todas as classes que serão utilizadas no programa
-import LeitorArquivoSistemaEquacao.LeitorArquivoSistemaEquacao;
-import OrganizadorDeSistemas.OrganizadorDeSistemas;
-import ResolvedorDeSistemas.ResolvedorDeSistemas;
-import Teclado.Teclado;
-import VerificadorDeSistemas.VerificadorDeSistemas;
-import Printador.Printador;
+import leitorArquivoSistemaEquacao.LeitorArquivoSistemaEquacao;
+import organizadorDeSistemas.OrganizadorDeSistemas;
+import resolvedorDeSistemas.ResolvedorDeSistemas;
+import teclado.Teclado;
+import verificadorDeSistemas.VerificadorDeSistemas;
+import printador.Printador;
 
 public class Programa
 {
@@ -42,18 +42,13 @@ public class Programa
                 }
 
                 org = new OrganizadorDeSistemas(leitor.getLinhas(), leitor.getQtdEquacoes()); //Instancia a variável do organizador de sistemas
-                org.montarMatriz(); //Monta a matriz de equações
+                ver = new VerificadorDeSistemas(org.montarMatriz(), org.getQtdEquacoes()); //Instancia a variável do verificador de sistemas
+                if(!ver.haPossibilidadeDeResolucao()) //Verifica se o sistema pode, de fato, ser resolvido
+                    throw new Exception("Sistema impossível de resolver");
 
-                ver = new VerificadorDeSistemas(org.getMatriz(), org.getQtdEquacoes()); //Instancia a variável do verificador de sistemas
-                ver.verificarPossibilidadeDeResolucao(); //Verifica se o sistema pode, de fato, ser resolvido
+                res = new ResolvedorDeSistemas(org.tirarZerosDaDiagonalPrincipal()/*Procura remover todos os zeros da diagonal principal da matriz, trocando a ordem das equações nela*/, org.getQtdEquacoes()); //Instancia a variável do resolvedor de sistemas
 
-                org.setMatriz(ver.getMatriz(), ver.getQtdEquacoes()); //Atualiza a matriz do organizador de sistemas e a quantidade de equações nela contidas
-                org.tirarZerosDaDiagonalPrincipal(); //Procura remover todos os zeros da diagonal principal da matriz, trocando a ordem das equações nela
-
-                res = new ResolvedorDeSistemas(org.getMatriz(), org.getQtdEquacoes()); //Instancia a variável do resolvedor de sistemas
-                res.resolverSistema(); //Resolve o sistema de equações localizado na matriz
-
-                Printador.printarResultado(res.getMatriz(), res.getQtdEquacoes()); //Printa, por meio de uma classe singleton, os resultados do sistema de duas formas diferentes
+                Printador.printarResultado(res.resolverSistema()/*Resolve o sistema de equações localizado na matriz*/, res.getQtdEquacoes()); //Printa, por meio de uma classe singleton, os resultados do sistema de duas formas diferentes
                 System.out.println("\n"); //Cria um espaçamento
             }
             catch (Exception ex) //Se der erro
