@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6a3ceeec-abd9-4dc9-8656-b17322d8c6c1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/nicol.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LeitorArquivoSistemaEquacao/LeitorArquivoSistemaEquacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/leitorArquivoSistemaEquacao/LeitorArquivoSistemaEquacao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OrganizadorDeSistemas/OrganizadorDeSistemas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/organizadorDeSistemas/OrganizadorDeSistemas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Printador/Printador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/printador/Printador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Programa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Programa.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ProgramaTeste.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProgramaTeste.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ResolvedorDeSistemas/ResolvedorDeSistemas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/resolvedorDeSistemas/ResolvedorDeSistemas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Teclado/Teclado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/teclado/Teclado.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VerificadorDeSistemas/VerificadorDeSistemas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/verificadorDeSistemas/VerificadorDeSistemas.java" afterDir="false" />
-    </list>
+    <list default="true" id="6a3ceeec-abd9-4dc9-8656-b17322d8c6c1" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,6 +63,14 @@
       <option name="presentableId" value="Default" />
       <updated>1572969604626</updated>
     </task>
+    <task id="LOCAL-00001" summary="TERMINEI, CARAMBA!">
+      <created>1573001911795</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1573001911795</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -89,5 +85,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="TERMINEI, CARAMBA!" />
+    <option name="LAST_COMMIT_MESSAGE" value="TERMINEI, CARAMBA!" />
   </component>
 </project>

@@ -21,17 +21,17 @@ public class Printador //Classe singleton
         System.out.println("Os resultados valem, respectivamente:");
 
         double[] resultados = new double[qtdEquacoes];
-        for(int i = 0; i < qtdEquacoes; i++)
+        for(int i = 0; i < qtdEquacoes; i++) //Printa de uma forma
         {
             resultados[i] = matriz[i][qtdEquacoes];
 
             if(i != qtdEquacoes - 1)
-                System.out.printf("%.2f" + ";" + "\n", resultados[i]);
+                System.out.printf("%.2f" + ";" + "\n", resultados[i]); //Coloca somente as duas primeiras casas decimais
             else
-                System.out.printf("%.2f" + "." + "\n\n", resultados[qtdEquacoes - 1]);
+                System.out.printf("%.2f" + "." + "\n\n", resultados[qtdEquacoes - 1]); //Coloca somente as duas primeiras casas decimais
         }
 
-        System.out.print("Portanto, S = (");
+        System.out.print("Portanto, S = ("); //Printa de outra forma
         for(int i = 0; i < qtdEquacoes; i++)
         {
             if(i != qtdEquacoes - 1)
