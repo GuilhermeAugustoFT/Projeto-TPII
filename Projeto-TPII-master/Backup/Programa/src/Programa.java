@@ -6,10 +6,14 @@ import teclado.Teclado;
 import verificadorDeSistemas.VerificadorDeSistemas;
 import printador.Printador;
 
+import java.util.Locale;
+
 public class Programa
 {
     public static void main(String[] args)
     {
+        Locale.setDefault(new Locale("pt", "BR"));
+
         programa:for(;;) //Sempre
         {
             try

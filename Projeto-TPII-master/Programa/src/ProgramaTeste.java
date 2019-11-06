@@ -4,10 +4,14 @@ import resolvedorDeSistemas.ResolvedorDeSistemas;
 import organizadorDeSistemas.OrganizadorDeSistemas;
 import verificadorDeSistemas.VerificadorDeSistemas;
 
+import java.util.Locale;
+
 public class ProgramaTeste
 {
     public static void main(String[] args)
     {
+        Locale.setDefault(new Locale("pt", "BR"));
+
         try
         {
             //Teste de LeitorArquivoSistemaEquacao:
