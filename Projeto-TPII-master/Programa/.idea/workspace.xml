@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6a3ceeec-abd9-4dc9-8656-b17322d8c6c1" name="Default Changelist" comment="" />
+    <list default="true" id="6a3ceeec-abd9-4dc9-8656-b17322d8c6c1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/nicol.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LeitorArquivoSistemaEquacao/LeitorArquivoSistemaEquacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/leitorArquivoSistemaEquacao/LeitorArquivoSistemaEquacao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/OrganizadorDeSistemas/OrganizadorDeSistemas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/organizadorDeSistemas/OrganizadorDeSistemas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Printador/Printador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/printador/Printador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Programa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Programa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProgramaTeste.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProgramaTeste.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ResolvedorDeSistemas/ResolvedorDeSistemas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/resolvedorDeSistemas/ResolvedorDeSistemas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Teclado/Teclado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/teclado/Teclado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/VerificadorDeSistemas/VerificadorDeSistemas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/verificadorDeSistemas/VerificadorDeSistemas.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,6 +25,10 @@
   </component>
   <component name="ProjectId" id="1TCggl73XA84xhtXw0RGHUQ6B70" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.spelling" />
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -25,7 +41,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.ProgramaTeste">
     <configuration name="Programa" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Programa" />
       <module name="Programa" />
@@ -33,12 +49,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ProgramaTeste" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ProgramaTeste" />
+      <module name="Programa" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ProgramaTeste" />
         <item itemvalue="Application.Programa" />
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" BundledDictionaries="3" BundledDictionary0="android.dic" BundledDictionary1="jetbrains.dic" BundledDictionary2="english.dic" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="project-level" UseSingleDictionary="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -57,7 +82,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

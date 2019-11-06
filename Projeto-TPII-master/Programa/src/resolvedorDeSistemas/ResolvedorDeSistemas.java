@@ -30,8 +30,16 @@ public class ResolvedorDeSistemas implements Cloneable
         if(qtdEquacoes < 2)
             throw new Exception("A quantidade de equações é inválida");
 
-        this.matrizEquacoes = matrizEquacoes.clone();
         this.qtdEquacoes = qtdEquacoes;
+
+        this.matrizEquacoes = new double[this.qtdEquacoes][this.getQtdColunas()];
+        for(int i = 0; i < this.qtdEquacoes; i++) //Clona a matriz
+        {
+            for(int j = 0; j < this.getQtdColunas(); j++)
+            {
+                this.matrizEquacoes[i][j] = matrizEquacoes[i][j];
+            }
+        }
     }
 
     /**
@@ -46,8 +54,16 @@ public class ResolvedorDeSistemas implements Cloneable
         if(modelo == null)
             throw new Exception("O modelo era null");
 
-        this.matrizEquacoes = modelo.matrizEquacoes.clone();
         this.qtdEquacoes = modelo.qtdEquacoes;
+
+        this.matrizEquacoes = new double[this.qtdEquacoes][this.getQtdColunas()];
+        for(int i = 0; i < this.qtdEquacoes; i++) //Clona a matriz
+        {
+            for(int j = 0; j < this.getQtdColunas(); j++)
+            {
+                this.matrizEquacoes[i][j] = modelo.matrizEquacoes[i][j];
+            }
+        }
     }
 
 
@@ -84,7 +100,7 @@ public class ResolvedorDeSistemas implements Cloneable
             {
                 resultado = this.matrizEquacoes[i][j] / divisor;
 
-                if(resultado != Double.POSITIVE_INFINITY && resultado != Double.NEGATIVE_INFINITY && !Double.isNaN(resultado))
+                if(resultado != Double.POSITIVE_INFINITY && resultado != Double.NEGATIVE_INFINITY && !Double.isNaN(resultado)) //Divisão por zero
                     this.matrizEquacoes[i][j] = resultado;
                 else
                     throw new Exception("Proibido divisão por zero");
@@ -98,6 +114,7 @@ public class ResolvedorDeSistemas implements Cloneable
     /**
      * Torna os demais elemetos zero.
      * Soma a linha do elemento a ser tornado um multiplicada pelo oposto do elemento a ser tornado zero à linha do elemento a ser tornado zero.
+     * @param coluna coluna a ser tornada zero, exceto pela diagonal principal da matriz.
      */
     protected void tornarDemaisElementosZero(int coluna)
     {
@@ -108,14 +125,14 @@ public class ResolvedorDeSistemas implements Cloneable
         {
             if(i != coluna)
             {
-                numeroTrocado = -this.matrizEquacoes[i][coluna];
+                numeroTrocado = -this.matrizEquacoes[i][coluna]; //Oposto do número coletado
                 if(numeroTrocado != 0)
                 {
                     for (int j = 0; j < this.getQtdColunas(); j++)
                     {
-                        aSerSomado[j] = this.matrizEquacoes[coluna][j] * numeroTrocado;
+                        aSerSomado[j] = this.matrizEquacoes[coluna][j] * numeroTrocado; //Multiplica
 
-                        this.matrizEquacoes[i][j] = this.matrizEquacoes[i][j] + aSerSomado[j];
+                        this.matrizEquacoes[i][j] = this.matrizEquacoes[i][j] + aSerSomado[j]; //Soma
                     }
                 }
             }
@@ -195,7 +212,7 @@ public class ResolvedorDeSistemas implements Cloneable
 
             ret = ret + this.matrizEquacoes[i][this.qtdEquacoes];
 
-            ret = ret + "}";
+            ret = ret + "}" + "\n";
         }
 
         return ret;

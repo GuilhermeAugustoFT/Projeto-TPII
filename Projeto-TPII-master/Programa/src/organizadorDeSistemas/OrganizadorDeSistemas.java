@@ -35,8 +35,15 @@ public class OrganizadorDeSistemas implements Cloneable
         if(qtdEquacoes < 2)
             throw new Exception("A quantidade de equações era inválida");
 
-        this.vetorEquacoes = vetorEquacoes.clone();
         this.qtdEquacoes = qtdEquacoes;
+
+        this.vetorEquacoes = new String[this.qtdEquacoes];
+        for(int i = 0; i < this.qtdEquacoes; i++) //Clona o vetor
+        {
+            this.vetorEquacoes[i] = new String(vetorEquacoes[i]);
+        }
+
+        this.matrizEquacoes = new double[this.qtdEquacoes][this.getQtdColunas()];
     }
 
     /**
@@ -52,8 +59,21 @@ public class OrganizadorDeSistemas implements Cloneable
             throw new Exception("O modelo era null");
 
         this.qtdEquacoes = modelo.qtdEquacoes;
-        this.vetorEquacoes = modelo.vetorEquacoes.clone();
-        this.matrizEquacoes = modelo.matrizEquacoes.clone();
+
+        this.vetorEquacoes = new String[this.qtdEquacoes];
+        for(int i = 0; i < this.qtdEquacoes; i++) //Clona o vetor
+        {
+            this.vetorEquacoes[i] = new String(modelo.vetorEquacoes[i]);
+        }
+
+        this.matrizEquacoes = new double[this.qtdEquacoes][this.getQtdColunas()];
+        for(int i = 0; i < this.qtdEquacoes; i++) //Clona a matriz
+        {
+            for(int j = 0; j < this.getQtdColunas(); j++)
+            {
+                this.matrizEquacoes[i][j] = modelo.matrizEquacoes[i][j];
+            }
+        }
     }
 
     /**
@@ -67,8 +87,6 @@ public class OrganizadorDeSistemas implements Cloneable
     {
         try
         {
-            this.matrizEquacoes = new double[this.qtdEquacoes][this.getQtdColunas()]; // instância da matriz com o tamanho necessário
-
             for (int i=0; i < this.qtdEquacoes; i++)
             {
                 StringTokenizer quebrador = new StringTokenizer(this.vetorEquacoes[i]); // instância do StringTokenizer que irá auxiliar na montagem da matriz
@@ -103,6 +121,7 @@ public class OrganizadorDeSistemas implements Cloneable
         double[] auxPrim = new double[this.getQtdColunas()];
         double[] auxSeg = new double[this.getQtdColunas()];
         boolean ok = true;
+
         for(int j = 0; j < this.getQtdColunas(); j++)
         {
             if (j < this.qtdEquacoes)
@@ -114,35 +133,36 @@ public class OrganizadorDeSistemas implements Cloneable
             }
 
 
+            //Coloca nos vetores auxiliares os valores que terão a princípio
             auxPrim[j] = this.matrizEquacoes[0][j];
             auxSeg[j] = this.matrizEquacoes[1][j];
         }
 
         if(!ok)
         {
-            ok = true;
+            ok = true; //Parte do princípio de que a matriz já está correta
 
             for (int i = 0; i < this.qtdEquacoes; i++)
             {
                 for (int j = 0; j < this.getQtdColunas(); j++)
                 {
                     if (i != this.qtdEquacoes - 1)
-                        this.matrizEquacoes[i + 1][j] = auxPrim[j];
+                        this.matrizEquacoes[i + 1][j] = auxPrim[j]; //Coloca na próxima posição
                     else
-                        this.matrizEquacoes[0][j] = auxPrim[j];
+                        this.matrizEquacoes[0][j] = auxPrim[j]; //Coloca na primeira posição
                 }
 
                 for (int j = 0; j < this.getQtdColunas(); j++)
                 {
-                    auxPrim[j] = auxSeg[j];
+                    auxPrim[j] = auxSeg[j]; //O auxiliar primário recebe o secundário
 
                     if (i < this.qtdEquacoes - 2)
-                        auxSeg[j] = this.matrizEquacoes[i + 2][j];
+                        auxSeg[j] = this.matrizEquacoes[i + 2][j]; //O auxiliar secundário recebe outros valores
                 }
 
                 for(int j = 0; j < this.qtdEquacoes; j++)
                 {
-                    if (this.matrizEquacoes[j][j] == 0.0)
+                    if (this.matrizEquacoes[j][j] == 0.0) //Verifica se há zero na diagonal principal
                     {
                         ok = false;
                         break;
@@ -154,10 +174,10 @@ public class OrganizadorDeSistemas implements Cloneable
                     break;
             }
             if (!ok)
-                throw new Exception("Sistema impossível de se resolver");
+                throw new Exception("Sistema impossível de se resolver"); //Se terminar o for e ainda não tiver tirado os zeros da diagonal principal
         }
 
-        return this.matrizEquacoes;
+        return this.matrizEquacoes; //Retorna a matriz pronta
     }
 
     /**
@@ -265,7 +285,7 @@ public class OrganizadorDeSistemas implements Cloneable
 
             ret = ret + this.matrizEquacoes[i][this.qtdEquacoes];
 
-            ret = ret + "}";
+            ret = ret + "}" + "\n";
         }
         ret = ret + "\n" + "Vetor de Equações:" + "\n";
 

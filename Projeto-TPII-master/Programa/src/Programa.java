@@ -17,7 +17,6 @@ public class Programa
                 //Cria variáveis a partir das classes que resolverão o sistema
                 LeitorArquivoSistemaEquacao leitor;
                 OrganizadorDeSistemas org;
-                VerificadorDeSistemas ver;
                 ResolvedorDeSistemas res;
                 String localDoArquivo;
 
@@ -42,8 +41,7 @@ public class Programa
                 }
 
                 org = new OrganizadorDeSistemas(leitor.getLinhas(), leitor.getQtdEquacoes()); //Instancia a variável do organizador de sistemas
-                ver = new VerificadorDeSistemas(org.montarMatriz(), org.getQtdEquacoes()); //Instancia a variável do verificador de sistemas
-                if(!ver.haPossibilidadeDeResolucao()) //Verifica se o sistema pode, de fato, ser resolvido
+                if(!VerificadorDeSistemas.haPossibilidadeDeResolucao(org.montarMatriz(), org.getQtdEquacoes())) //Verifica se o sistema pode, de fato, ser resolvido
                     throw new Exception("Sistema impossível de resolver");
 
                 res = new ResolvedorDeSistemas(org.tirarZerosDaDiagonalPrincipal()/*Procura remover todos os zeros da diagonal principal da matriz, trocando a ordem das equações nela*/, org.getQtdEquacoes()); //Instancia a variável do resolvedor de sistemas
