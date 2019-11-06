@@ -1,4 +1,3 @@
-import com.sun.org.apache.xpath.internal.operations.Or;
 import printador.Printador;
 import resolvedorDeSistemas.ResolvedorDeSistemas;
 import leitorArquivoSistemaEquacao.LeitorArquivoSistemaEquacao;
@@ -16,7 +15,7 @@ public class ProgramaTeste
 
                 LeitorArquivoSistemaEquacao leitor = new LeitorArquivoSistemaEquacao();
 
-                leitor.ler("D:\\COTUCA\\Curso Técnico de Informática\\I Ano\\2 Sem\\Técnicas de Programação II\\2Java\\1Projetos\\Projeto1\\1Proposta e Observações\\gauss.txt");
+                leitor.ler("F:\\COTUCA\\Curso Técnico de Informática\\I Ano\\2 Sem\\Técnicas de Programação II\\2Java\\1Projetos\\Projeto1\\1Proposta e Observações\\gauss.txt");
                 System.out.println(leitor + "\n");
 
                 LeitorArquivoSistemaEquacao leitor2 = new LeitorArquivoSistemaEquacao(leitor);

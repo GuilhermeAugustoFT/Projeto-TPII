@@ -31,13 +31,13 @@ public class Printador //Classe singleton
                 System.out.printf("%.2f" + "." + "\n\n", resultados[qtdEquacoes - 1]); //Coloca somente as duas primeiras casas decimais
         }
 
-        System.out.print("Portanto, S = ("); //Printa de outra forma
+        System.out.print("Portanto, S = {"); //Printa de outra forma
         for(int i = 0; i < qtdEquacoes; i++)
         {
             if(i != qtdEquacoes - 1)
                 System.out.printf("%.2f" + "; ", resultados[i]);
             else
-                System.out.printf("%.2f" + ")", resultados[qtdEquacoes - 1]);
+                System.out.printf("%.2f" + "}", resultados[qtdEquacoes - 1]);
         }
     }
 

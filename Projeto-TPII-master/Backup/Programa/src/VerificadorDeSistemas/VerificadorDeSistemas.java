@@ -27,18 +27,18 @@ public class VerificadorDeSistemas //Classe singleton
 
         for(int i = 0; i < qtdEquacoes; i++)
         {
-            for(int k = 1; k < qtdEquacoes; k++)
+            for(int k = i + 1; k < qtdEquacoes; k++)
             {
                 for (int j = 0; j < qtdEquacoes; j++)
                 {
-                    matrizResultados[i][j] = matrizEquacoes[k][j] / matrizEquacoes[k][j]; //Divide uma pelas outras
+                    matrizResultados[i][j] = matrizEquacoes[i][j] / matrizEquacoes[k][j]; //Divide uma pelas outras
                 }
             }
         }
 
         for(int i = 0; i < qtdEquacoes; i++)
         {
-            for(int k = 1; k < qtdEquacoes - i; k++)
+            for(int k = i + 1; k < qtdEquacoes - i; k++)
             {
                 for (int j = 0; j < qtdEquacoes; j++)
                 {
