@@ -103,10 +103,15 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/organizadorDeSistemas/OrganizadorDeSistemas.java</url>
-          <line>175</line>
-          <option name="timeStamp" value="7" />
+          <line>144</line>
+          <option name="timeStamp" value="35" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="this.matrizEquacoes[1]" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

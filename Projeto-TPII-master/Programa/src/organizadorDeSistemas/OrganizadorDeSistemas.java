@@ -142,25 +142,34 @@ public class OrganizadorDeSistemas implements Cloneable
         {
             ok = true; //Parte do princípio de que a matriz já está correta
 
-            for (int i = 0; i < this.qtdEquacoes; i++)
+            for(int k = 0; k < this.qtdEquacoes - 1; k++)
             {
-                for (int j = 0; j < this.getQtdColunas(); j++)
+                for (int i = 0; i < this.qtdEquacoes; i++)
                 {
-                    if (i != this.qtdEquacoes - 1)
-                        this.matrizEquacoes[i + 1][j] = auxPrim[j]; //Coloca na próxima posição
-                    else
-                        this.matrizEquacoes[0][j] = auxPrim[j]; //Coloca na primeira posição
+                    for (int j = 0; j < this.getQtdColunas(); j++)
+                    {
+                        if (i != this.qtdEquacoes - 1)
+                            this.matrizEquacoes[i + 1][j] = auxPrim[j]; //Coloca na próxima posição
+                        else
+                            this.matrizEquacoes[0][j] = auxPrim[j]; //Coloca na primeira posição
+                    }
+
+                    for (int j = 0; j < this.getQtdColunas(); j++)
+                    {
+                        auxPrim[j] = auxSeg[j]; //O auxiliar primário recebe o secundário
+
+                        if (i < this.qtdEquacoes - 2)
+                            auxSeg[j] = this.matrizEquacoes[i + 2][j]; //O auxiliar secundário recebe outros valores
+                        else
+                            auxSeg[j] = this.matrizEquacoes[1][j]; //PROBLEMA AQUI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                        a
+                    }
                 }
+            }
 
-                for (int j = 0; j < this.getQtdColunas(); j++)
-                {
-                    auxPrim[j] = auxSeg[j]; //O auxiliar primário recebe o secundário
-
-                    if (i < this.qtdEquacoes - 2)
-                        auxSeg[j] = this.matrizEquacoes[i + 2][j]; //O auxiliar secundário recebe outros valores
-                }
-
-                for(int j = 0; j < this.qtdEquacoes; j++)
+            for(int i = 0; i < this.qtdEquacoes; i++)
+            {
+                for (int j = 0; j < this.qtdEquacoes; j++)
                 {
                     if (this.matrizEquacoes[j][j] == 0.0) //Verifica se há zero na diagonal principal
                     {
@@ -170,7 +179,7 @@ public class OrganizadorDeSistemas implements Cloneable
                     else
                         ok = true;
                 }
-                if(ok)
+                if (ok)
                     break;
             }
             if (!ok)
