@@ -4,7 +4,7 @@ import java.util.*;
 
 /**
  * A classe OrganizadorDeSistemas representa um organizador de equações lidas de um arquivo texto, tendo
- * como base uma matriz que armazena os coeficientes das equações anteriormente armazenados pela classe LeitorArquivoSistemaEquação no vetorEquacoes e um número inteiro de quantidade de equações presentes.
+ * como base uma matriz que armazena os coeficientes das equações anteriormente armazenados pela classe LeitorArquivoSistemaEquacao.java no vetorEquacoes e um número inteiro de quantidade de equações presentes.
  * Instâncias desta classe permitem que valores lidos de um arquivo texto sejam armazenados e organizados em uma Matriz.
  * Nela encontramos, por exemplo, um método para montar a Matriz, tirar os zeros da diagonal principal, um construtor, equals etc.
  * @author Nícolas Maisonnette Duarte e Guilherme Augusto Felisberto Teixeira.

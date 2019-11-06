@@ -2,7 +2,7 @@ package resolvedorDeSistemas;
 
 /**
  * A classe ResolvedorDeSistemas é a classe que resolverá o sistema de equações, tendo
- * como base uma matriz que armazena os coeficientes das equações anteriormente armazenados pela classe LeitorArquivoSistemaEquação,
+ * como base uma matriz que armazena os coeficientes das equações anteriormente armazenados pela classe LeitorArquivoSistemaEquacao.java,
  * e organizados pela classe OrganizadorDeSistemas, e tendo também uma variável inteira que armazena a quantidade de equações no sistema.
  * Instâncias desta classe possuem a capacidade de resolver sistemas de equações anteriormente organizados.
  * Nela encontramos, por exemplo, um método para resolver o sistema, um construtor, equals etc.

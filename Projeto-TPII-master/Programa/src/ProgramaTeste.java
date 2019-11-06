@@ -1,6 +1,6 @@
+import leitorArquivoSistemaEquacao.LeitorArquivoSistemaEquacao;
 import printador.Printador;
 import resolvedorDeSistemas.ResolvedorDeSistemas;
-import leitorArquivoSistemaEquacao.LeitorArquivoSistemaEquacao;
 import organizadorDeSistemas.OrganizadorDeSistemas;
 import verificadorDeSistemas.VerificadorDeSistemas;
 

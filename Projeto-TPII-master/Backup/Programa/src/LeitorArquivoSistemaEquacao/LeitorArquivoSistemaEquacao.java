@@ -43,7 +43,12 @@ public class LeitorArquivoSistemaEquacao implements Cloneable //Implementa o clo
             throw new Exception("O modelo era null");
 
         this.qtdEquacoes = modelo.qtdEquacoes;
-        this.vetorEquacoes = modelo.vetorEquacoes.clone(); //Clona o vetor
+
+        this.vetorEquacoes = new String[this.qtdEquacoes];
+        for(int i = 0; i < this.qtdEquacoes; i++) //Clona o vetor
+        {
+            this.vetorEquacoes[i] = new String(modelo.vetorEquacoes[i]);
+        }
     }
 
     /**
