@@ -118,75 +118,69 @@ public class OrganizadorDeSistemas implements Cloneable
      */
     public double[][] tirarZerosDaDiagonalPrincipal() throws Exception
     {
-        double[] auxPrim = new double[this.getQtdColunas()];
-        double[] auxSeg = new double[this.getQtdColunas()];
-        boolean ok = true;
-
-        for(int j = 0; j < this.getQtdColunas(); j++)
+        int contadorMaximo = 0;
+        while(temZeroDiagonalPrincipal() == true && contadorMaximo < this.qtdEquacoes)
         {
-            if (j < this.qtdEquacoes)
+            for(int i=0; i < this.qtdEquacoes; i++)
             {
-                if (this.matrizEquacoes[j][j] == 0.0)
+                if(this.matrizEquacoes[i][i] == 0)
                 {
-                    ok = false;
-                }
-            }
-
-
-            //Coloca nos vetores auxiliares os valores que terão a princípio
-            auxPrim[j] = this.matrizEquacoes[0][j];
-            auxSeg[j] = this.matrizEquacoes[1][j];
-        }
-
-        if(!ok)
-        {
-            ok = true; //Parte do princípio de que a matriz já está correta
-
-            for(int k = 0; k < this.qtdEquacoes - 1; k++)
-            {
-                for (int i = 0; i < this.qtdEquacoes; i++)
-                {
-                    for (int j = 0; j < this.getQtdColunas(); j++)
+                    if(i != this.qtdEquacoes - 1)
                     {
-                        if (i != this.qtdEquacoes - 1)
-                            this.matrizEquacoes[i + 1][j] = auxPrim[j]; //Coloca na próxima posição
-                        else
-                            this.matrizEquacoes[0][j] = auxPrim[j]; //Coloca na primeira posição
-                    }
-
-                    for (int j = 0; j < this.getQtdColunas(); j++)
-                    {
-                        auxPrim[j] = auxSeg[j]; //O auxiliar primário recebe o secundário
-
-                        if (i < this.qtdEquacoes - 2)
-                            auxSeg[j] = this.matrizEquacoes[i + 2][j]; //O auxiliar secundário recebe outros valores
-                        else
-                            auxSeg[j] = this.matrizEquacoes[1][j];
-                    }
-                }
-            }
-
-            for(int i = 0; i < this.qtdEquacoes; i++)
-            {
-                for (int j = 0; j < this.qtdEquacoes; j++)
-                {
-                    if (this.matrizEquacoes[j][j] == 0.0) //Verifica se há zero na diagonal principal
-                    {
-                        ok = false;
-                        break;
+                        //System.out.println("tem " + i +" " + i);
+                        double[] essaLinha = getVetorLinha(i);
+                        double[] deBaixo = getVetorLinha(i+1);
+                        for(int j=0; j<this.getQtdColunas(); j++)
+                        {
+                            incluir(i, j, deBaixo[j]);
+                            incluir(i+1, j, essaLinha[j]);
+                        }
                     }
                     else
-                        ok = true;
+                    {
+                        //System.out.println("tem na ultima");
+                        double[] essaLinha = getVetorLinha(i);
+                        double[] deCima = getVetorLinha(i-1);
+                        for(int j=0; j<this.getQtdColunas(); j++)
+                        {
+                            incluir(i, j, deCima[j]);
+                            incluir(i-1, j, essaLinha[j]);
+                        }
+                    }
+                    contadorMaximo++;
                 }
-                if (ok)
-                    break;
             }
-            if (!ok)
-                throw new Exception("Sistema impossível de se resolver"); //Se terminar o for e ainda não tiver tirado os zeros da diagonal principal
         }
+        if (temZeroDiagonalPrincipal())
+            throw new Exception("Sistema impossível de se resolver"); //Se terminar o for e ainda não tiver tirado os zeros da diagonal principal
+
 
         return this.matrizEquacoes; //Retorna a matriz pronta
     }
+    protected void incluir(int i, int j, double val)
+    {
+        this.matrizEquacoes[i][j] = val;
+    }
+    protected double[] getVetorLinha (int qualLinha)
+    {
+        double[] linha = new double[this.getQtdColunas()];
+        for(int j=0; j<this.getQtdColunas(); j++)
+        {
+            linha[j] = this.matrizEquacoes[qualLinha][j];
+        }
+        return linha;
+    }
+
+    protected boolean temZeroDiagonalPrincipal()
+    {
+        for(int i = 0; i < this.qtdEquacoes; i++)
+        {
+            if(this.matrizEquacoes[i][i] == 0)
+                return true;
+        }
+        return false;
+    }
+
 
     /**
      * Cria e retorna a quantidade de colunas.
