@@ -120,71 +120,73 @@ public class OrganizadorDeSistemas implements Cloneable
     {
         double[] auxPrim = new double[this.getQtdColunas()];
         double[] auxSeg = new double[this.getQtdColunas()];
+        double[] auxTrans = new double[this.getQtdColunas()];
         boolean ok = true;
 
-        for(int j = 0; j < this.getQtdColunas(); j++)
+        for (int i = 0; i < this.qtdEquacoes; i++) //Quantas tentativas
         {
-            if (j < this.qtdEquacoes)
+            for(int k = 0; k < this.qtdEquacoes; k++) //Teste para ver se há 0 na diagonal principal
             {
-                if (this.matrizEquacoes[j][j] == 0.0)
+                if(this.matrizEquacoes[k][k] == 0)
                 {
                     ok = false;
+                    break;
                 }
+                ok = true;
             }
-
-
-            //Coloca nos vetores auxiliares os valores que terão a princípio
-            auxPrim[j] = this.matrizEquacoes[0][j];
-            auxSeg[j] = this.matrizEquacoes[1][j];
-        }
-
-        if(!ok)
-        {
-            ok = true; //Parte do princípio de que a matriz já está correta
-
-            for(int k = 0; k < this.qtdEquacoes - 1; k++)
+            if(!ok) //Se houver 0 na diagonal principal
             {
-                for (int i = 0; i < this.qtdEquacoes; i++)
+                for (int w = 0; w < this.qtdEquacoes - 1; w++) //Linhas
                 {
-                    for (int j = 0; j < this.getQtdColunas(); j++)
+                    if (w == 0) //Primeira linha
                     {
-                        if (i != this.qtdEquacoes - 1)
-                            this.matrizEquacoes[i + 1][j] = auxPrim[j]; //Coloca na próxima posição
-                        else
-                            this.matrizEquacoes[0][j] = auxPrim[j]; //Coloca na primeira posição
-                    }
+                        for (int j = 0; j < this.getQtdColunas(); j++)
+                        {
+                            auxPrim[j] = this.matrizEquacoes[this.qtdEquacoes - 1][j]; //Pega o último
+                            auxSeg[j] = this.matrizEquacoes[w][j];
 
-                    for (int j = 0; j < this.getQtdColunas(); j++)
-                    {
-                        auxPrim[j] = auxSeg[j]; //O auxiliar primário recebe o secundário
+                            this.matrizEquacoes[w][j] = auxPrim[j];
 
-                        if (i < this.qtdEquacoes - 2)
-                            auxSeg[j] = this.matrizEquacoes[i + 2][j]; //O auxiliar secundário recebe outros valores
-                        else
-                            auxSeg[j] = this.matrizEquacoes[1][j]; //PROBLEMA AQUI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                        a
-                    }
-                }
-            }
+                            auxPrim[j] = this.matrizEquacoes[w + 1][j]; //Guarda os valores que serão apagados por auxSeg
 
-            for(int i = 0; i < this.qtdEquacoes; i++)
-            {
-                for (int j = 0; j < this.qtdEquacoes; j++)
-                {
-                    if (this.matrizEquacoes[j][j] == 0.0) //Verifica se há zero na diagonal principal
-                    {
-                        ok = false;
-                        break;
+                            this.matrizEquacoes[w + 1][j] = auxSeg[j]; //Valor da próxima linha
+                        }
                     }
                     else
-                        ok = true;
+                    {
+                        if (w != this.qtdEquacoes - 1) //Se não for o último
+                        {
+                            for (int j = 0; j < this.getQtdColunas(); j++)
+                            {
+                                this.matrizEquacoes[w][j] = auxSeg[j]; //Valor da antiga próxima linha, que agora é esta
+
+                                auxSeg[j] = auxPrim[j]; //Atualiza o secundário
+                                auxPrim[j] = this.matrizEquacoes[w + 1][j]; //Atualiza o primário para guardar os valores que serão apagados por auxSeg
+
+                                this.matrizEquacoes[w + 1][j] = auxSeg[j]; //Valor da próxima linha
+                            }
+                        }
+                        else
+                        {
+                            for (int j = 0; j < this.getQtdColunas(); j++)
+                            {
+                                auxTrans[j] = auxSeg[j]; //Permite que o primário receba o secundário não alterado
+
+                                auxSeg[j] = auxPrim[j];
+                                auxPrim[j] = auxTrans[j];
+
+                                this.matrizEquacoes[w][j] = auxPrim[j];
+                                this.matrizEquacoes[w + 1][j] = auxSeg[j];
+                            }
+                        }
+                    }
                 }
-                if (ok)
-                    break;
             }
-            if (!ok)
-                throw new Exception("Sistema impossível de se resolver"); //Se terminar o for e ainda não tiver tirado os zeros da diagonal principal
+            else
+                break; //Para o loop principal
         }
+        if (!ok)
+            throw new Exception("Sistema impossível de se resolver"); //Se terminar o for e ainda não tiver tirado os zeros da diagonal principal
 
         return this.matrizEquacoes; //Retorna a matriz pronta
     }
