@@ -127,7 +127,6 @@ public class OrganizadorDeSistemas implements Cloneable
                 {
                     if(i != this.qtdEquacoes - 1)
                     {
-                        //System.out.println("tem " + i +" " + i);
                         double[] essaLinha = getVetorLinha(i);
                         double[] deBaixo = getVetorLinha(i+1);
                         for(int j=0; j<this.getQtdColunas(); j++)
@@ -138,7 +137,6 @@ public class OrganizadorDeSistemas implements Cloneable
                     }
                     else
                     {
-                        //System.out.println("tem na ultima");
                         double[] essaLinha = getVetorLinha(i);
                         double[] deCima = getVetorLinha(i-1);
                         for(int j=0; j<this.getQtdColunas(); j++)
@@ -161,6 +159,7 @@ public class OrganizadorDeSistemas implements Cloneable
     {
         this.matrizEquacoes[i][j] = val;
     }
+
     protected double[] getVetorLinha (int qualLinha)
     {
         double[] linha = new double[this.getQtdColunas()];
